@@ -16,6 +16,10 @@
                     こちらからログイン
                   </a>
                 </p>
+                <!-- データの重複があった時に表示 -->
+                {% if error %}
+                <p class="text-red-900 font-bold py-2">{{ error }}</p>
+                {% endif %}
               </div>
           
               <div class="mt-5">
