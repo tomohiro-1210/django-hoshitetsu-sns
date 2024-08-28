@@ -3,8 +3,10 @@ from django.http import HttpResponse
 # Djangoが準備してくれているユーザーモデルを読み込み
 from django.contrib.auth.models import User
 from django.db import IntegrityError
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from .models import PostModel
+
 
 # Create your views here.
 def index(request):
@@ -28,7 +30,7 @@ def signupfunc(request):
             return render(request, template, data)
     
     data = {}
-    return redirect('login')
+    return render(request, template, data)
 
 # ログイン画面
 def loginfunc(request):
@@ -44,24 +46,28 @@ def loginfunc(request):
         # ユーザがいるかいないか
         if user is not None:
             login(request, user)
-            return redirect('top')
+            return redirect('list')
             # data = {'context':'ログイン完了！'}
             # return render(request, template, data)
         else:
             data = {'context':'ログインができませんでした'}
             return render(request, template, data)
         
-    return redirect('top')
+    data = {}
+    return render(request, template, data)
 
 # ログアウト
 def logoutfunc(request):
-    HttpResponse('ログアウト')
+    logout(request)
+    return redirect('login')
     
 # 一覧表示
+@login_required
 def listfunc(request):
     # ページのデータ
     template = 'list.html'
     
+    # DBからの読み込み
     object_list = PostModel.objects.all()
     
     # データの読み込み

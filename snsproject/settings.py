@@ -122,3 +122,15 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# 画像フォルダの保管
+MEDIA_ROOT = BASE_DIR / 'images'
+MEDIA_URL = '/images/'
+
+# 静的ファイルの保管
+# STATIC_ROOT = BASE_DIR / 'static'
+# STATIC_URL = '/static/'
+# STATICFILES_DIRS = [str(BASE_DIR / 'static'),]
+
+# ログインURL
+LOGIN_URL = '/sns/login/'
