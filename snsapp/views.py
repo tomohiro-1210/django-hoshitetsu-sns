@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 # Djangoが準備してくれているユーザーモデルを読み込み
 from django.contrib.auth.models import User
@@ -73,3 +73,36 @@ def listfunc(request):
     # データの読み込み
     data={'object_list':object_list}
     return render(request, template, data)
+
+# 詳細表示
+@login_required
+def detailfunc(request, pk):
+    # ページのデータ
+    template = 'detail.html'
+    
+    # モデル
+    object = get_object_or_404(PostModel, pk=pk)
+    
+    # データの読み込み
+    data={'object':object}
+    return render(request, template, data)
+
+# いいね
+@login_required
+def goodfunc(request, pk):
+    # データの読み込み
+    object = PostModel.objects.get(pk=pk)
+    object.good = object.good + 1
+    object.save()
+    return redirect('list')
+    
+# 既読
+@login_required
+def readfunc(request, pk):
+    # データの読み込み
+    object = PostModel.objects.get(pk=pk)
+    object.read = object.read + 1
+    object.save()
+    return redirect('list')
+    
+    

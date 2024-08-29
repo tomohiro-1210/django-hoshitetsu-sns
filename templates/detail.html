@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block site_title %}
+投稿一覧
+{% endblock site_title %}
+
+{% block content %}
+<section class="w-full lg:w-3/4 max-w-100 mx-auto">
+  <div class="container px-6 py-10 mx-auto">
+      <div class="flex items-center justify-between">
+          <p class="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">投稿詳細</p>
+      </div>
+
+      <hr class="my-8 border-red-800 ">
+
+      <div class="container px-5 mx-auto">
+        <div class="mx-auto flex flex-wrap">
+          <img alt="thumbnail" class="lg:w-1/2 w-full lg:h-auto object-cover object-center rounded" src="{{ object.thumbnail.url }}">
+          <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-3 lg:mt-0">
+            <div class="mb-3 md:mb-6">
+                <h2 class="text-base title-font text-red-800 mb-2 tracking-widest">{{ object.author }}</h2>
+                <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{object.title}}</h1>
+            </div>
+            <p class="leading-relaxed">{{ object.text }}</p>
+            <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
+            </div>
+            <div class="text-left mb-4">
+              <button class="text-white bg-amber-700 border-0 py-2 px-6 mr-4 focus:outline-none hover:bg-amber-800 rounded">いいね : {{ object.good }}</button>
+              <button class="text-white bg-amber-500 border-0 py-2 px-6 focus:outline-none hover:bg-amber-600 rounded">既読</button>
+            </div>
+            <a href="{% url 'list' %}" class="block text-red-800 underline hover:text-red-700 text-right">投稿一覧に戻る</a>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+{% endblock content %}

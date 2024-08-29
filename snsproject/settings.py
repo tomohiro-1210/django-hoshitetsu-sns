@@ -125,7 +125,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # 画像フォルダの保管
 MEDIA_ROOT = BASE_DIR / 'images'
-MEDIA_URL = '/images/'
+MEDIA_URL = 'sns/images/'
 
 # 静的ファイルの保管
 # STATIC_ROOT = BASE_DIR / 'static'

@@ -4,7 +4,7 @@
 {% endblock site_title %}
 
 {% block content %}
-<section class="w-full lg:w-3/4 max-w-100 mx-auto">
+<section class="w-full lg:w-100 max-w-100 mx-auto">
   <div class="container px-6 py-10 mx-auto">
       <div class="flex items-center justify-between">
           <h1 class="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">みんなの投稿</h1>
@@ -22,7 +22,7 @@
         <!-- 投稿 -->
         {% for object in object_list %}
           <div>
-              <img class="object-cover object-center w-full h-64 rounded-lg lg:h-80" src="https://images.unsplash.com/photo-1624996379697-f01d168b1a52?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="">
+              <img class="w-full rounded-lg" src="{{ object.thumbnail.url }}" alt="">
 
               <div class="mt-8">
 
@@ -33,16 +33,16 @@
                   <div class="flex items-center justify-between my-4">
                       <div>
                           <a href="#" class="text-lg font-medium text-gray-700 dark:text-gray-300 hover:underline hover:text-gray-500">
-                              {{ object.author }}
+                              投稿者:{{ object.author }}
                           </a>
 
                           <p class="text-sm text-gray-500 dark:text-gray-400">February 1, 2022</p>
                       </div>
 
-                      <a href="#" class="inline-block text-red-800 underline hover:text-red-700">Read more</a>
+                      <a href="{% url 'detail' object.pk %}" class="inline-block text-red-800 underline hover:text-red-700">Read more</a>
                   </div>
                   <div class="text-left">
-                    <a href="#" class="text-white bg-amber-700 border-0 py-2 px-8 focus:outline-none hover:bg-amber-600 rounded text-lg">いいね</a>
+                    <a href="{% url 'good' object.pk %}" class="text-white bg-amber-700 border-0 py-2 px-8 focus:outline-none hover:bg-amber-600 rounded text-lg">いいね : {{ object.good }}</a>
                     <a href="#" class="text-white bg-amber-500 border-0 py-2 px-8 focus:outline-none hover:bg-amber-400 rounded text-lg">既読</a>
                   </div>
 
