@@ -12,5 +12,6 @@ urlpatterns = [
     path('detail/<int:pk>/', detailfunc, name='detail'),
     path('good/<int:pk>', goodfunc, name='good'),
     path('read/<int:pk>', readfunc, name='read'),
+    path('create/', PostCreateView.as_view(), name="create")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
   + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

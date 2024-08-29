@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block site_title %}
-投稿一覧
+投稿詳細
 {% endblock site_title %}
 
 {% block content %}
@@ -24,8 +24,8 @@
             <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
             </div>
             <div class="text-left mb-4">
-              <button class="text-white bg-amber-700 border-0 py-2 px-6 mr-4 focus:outline-none hover:bg-amber-800 rounded">いいね : {{ object.good }}</button>
-              <button class="text-white bg-amber-500 border-0 py-2 px-6 focus:outline-none hover:bg-amber-600 rounded">既読</button>
+              <button class="text-white bg-amber-700 border-0 py-2 px-6 mr-4 focus:outline-none hover:bg-amber-800 rounded">👍{{ object.good }}</button>
+              <button class="text-white bg-amber-500 border-0 py-2 px-6 focus:outline-none hover:bg-amber-600 rounded">👀{{ object.read }}</button>
             </div>
             <a href="{% url 'list' %}" class="block text-red-800 underline hover:text-red-700 text-right">投稿一覧に戻る</a>
           </div>

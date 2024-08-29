@@ -6,6 +6,8 @@ from django.db import IntegrityError
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import PostModel
+from django.views.generic import CreateView
+from django.urls import reverse_lazy
 
 
 # Create your views here.
@@ -101,8 +103,19 @@ def goodfunc(request, pk):
 def readfunc(request, pk):
     # データの読み込み
     object = PostModel.objects.get(pk=pk)
-    object.read = object.read + 1
-    object.save()
-    return redirect('list')
+    username = request.user.get_username()
+    if username in object.readname:
+        return redirect('list')
+    else:
+        object.read = object.read + 1
+        object.readname = object.readname + ', ' + username
+        object.save()
+        return redirect('list')
     
+# 投稿画面
+class PostCreateView(CreateView):
+    model = PostModel
+    template_name = 'create.html'
+    fields = ['title' ,'text', 'author', 'thumbnail']
+    success_url = reverse_lazy('list')
     
